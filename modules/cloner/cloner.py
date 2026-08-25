@@ -33,6 +33,9 @@ class RepoCloner:
         self.output_path = output_path
         self.n_repos = n_repos
         self.writer_lock = Lock()
+        # The log directory holds generated CSVs only, so it is not versioned:
+        # create it on demand so a freshly cloned repository can run as-is.
+        os.makedirs(log_dir, exist_ok=True)
         self.cloned_log_path = os.path.join(log_dir, 'cloned_log.csv')
         self.error_log_path = os.path.join(log_dir, 'errors.csv')
 

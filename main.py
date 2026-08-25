@@ -1,25 +1,26 @@
 """Main script to orchestrate the ML analysis pipeline."""
 
-from operator import truediv
 from pathlib import Path
 from modules.analyzer.ml_analysis_facade import MLAnalysisFacade
 from modules.analyzer.ml_roles import AnalyzerRole
 from modules.cloner.cloner import RepoCloner
 from modules.cloner.cloning_check import RepoInspector
-from modules.library_manager.library_dict_type import LibraryDictType
 from modules.oracle.matching.results_analysis import ResultAnalysis
 from modules.oracle.merge import Merger
 from modules.utils.logger import get_logger
-from modules.analyzer.analyzer_factory import AnalyzerFactory  # required import
-from modules.analyzer.builder.consumer_analyzer_builder import (
+# The concrete builders register themselves with AnalyzerFactory through the
+# @AnalyzerFactory.register(role) decorator, so importing them is what populates
+# the factory registry. They are intentionally unused by name.
+from modules.analyzer.analyzer_factory import AnalyzerFactory  # noqa: F401
+from modules.analyzer.builder.consumer_analyzer_builder import (  # noqa: F401
     ConsumerAnalyzerBuilder,
-)  # required import
-from modules.analyzer.builder.producer_analyzer_builder import (
+)
+from modules.analyzer.builder.producer_analyzer_builder import (  # noqa: F401
     ProducerAnalyzerBuilder,
-)  # required import
-from modules.analyzer.builder.metrics_analyzer_builder import (
+)
+from modules.analyzer.builder.metrics_analyzer_builder import (  # noqa: F401
     MetricsAnalyzerBuilder,
-)  # required import
+)
 
 logger = get_logger(__name__)
 
@@ -78,7 +79,7 @@ def main() -> None:
         metrics_facade = MLAnalysisFacade(
             input_path=REPOSITORY_PATH, io_path=IO_PATH, role=AnalyzerRole.METRICS
         )
-        dir_metrics = metrics_facade.run_analysis()
+        metrics_facade.run_analysis()
 
     # === MERGE DEI RISULTATI ===
     if MERGER:

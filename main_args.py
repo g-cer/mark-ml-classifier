@@ -10,16 +10,19 @@ from modules.cloner.cloning_check import RepoInspector
 from modules.oracle.matching.results_analysis import ResultAnalysis
 from modules.oracle.merge import Merger
 from modules.utils.logger import get_logger
-from modules.analyzer.analyzer_factory import AnalyzerFactory  # required import
-from modules.analyzer.builder.consumer_analyzer_builder import (
+# The concrete builders register themselves with AnalyzerFactory through the
+# @AnalyzerFactory.register(role) decorator, so importing them is what populates
+# the factory registry. They are intentionally unused by name.
+from modules.analyzer.analyzer_factory import AnalyzerFactory  # noqa: F401
+from modules.analyzer.builder.consumer_analyzer_builder import (  # noqa: F401
     ConsumerAnalyzerBuilder,
-)  # required import
-from modules.analyzer.builder.producer_analyzer_builder import (
+)
+from modules.analyzer.builder.producer_analyzer_builder import (  # noqa: F401
     ProducerAnalyzerBuilder,
-)  # required import
-from modules.analyzer.builder.metrics_analyzer_builder import (
+)
+from modules.analyzer.builder.metrics_analyzer_builder import (  # noqa: F401
     MetricsAnalyzerBuilder,
-)  # required import
+)
 
 logger = get_logger(__name__)
 
@@ -99,7 +102,7 @@ def parse_arguments():
         "--all",
         action="store_true",
         default=False,
-        help="Enable all steps (clone, clone-check, analysis, merge, result-analysis)",
+        help="Enable all steps (clone, clone-check, analysis, metrics, merge, result-analysis)",
     )
 
     # Analysis options
@@ -289,7 +292,7 @@ def main():
         logger.info("=" * 80)
         logger.info(f"IO Path: {args.io_path}")
         logger.info(f"Repository Path: {args.repository_path}")
-        logger.info(f"Steps enabled:")
+        logger.info("Steps enabled:")
         logger.info(f"  - Clone: {args.clone}")
         logger.info(f"  - Clone Check: {args.clone_check}")
         logger.info(f"  - Analysis: {args.analysis}")

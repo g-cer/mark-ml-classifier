@@ -175,7 +175,7 @@ class DashboardView(BaseView):
 
     def _create_summary_section(self) -> None:
         """Create the classification summary section with labels and pie chart."""
-        self.summary = ttk.LabelFrame(
+        self.summary = ttk.Labelframe(
             self.analysis_frame, text="Classification Summary", padding=10
         )
         self.summary.grid(row=0, column=0, sticky="ew", pady=(0, 10))
@@ -212,7 +212,7 @@ class DashboardView(BaseView):
 
     def _create_metrics_section(self) -> None:
         """Create the code metrics section."""
-        self.metrics_frame = ttk.LabelFrame(
+        self.metrics_frame = ttk.Labelframe(
             self.analysis_frame, text="Code Metrics", padding=10
         )
         self.metrics_frame.grid(row=1, column=0, sticky="nsew", pady=(0, 10))
@@ -225,7 +225,7 @@ class DashboardView(BaseView):
 
     def _create_keywords_section(self) -> None:
         """Create the ML keywords usage section with table and bar chart."""
-        self.libs_frame = ttk.LabelFrame(
+        self.libs_frame = ttk.Labelframe(
             self.analysis_frame, text="ML Keywords Usage", padding=10
         )
         self.libs_frame.grid(row=2, column=0, sticky="nsew")

@@ -42,7 +42,7 @@ class ConfigView(BaseView):
         self.frame = ttk.Frame(self.parent, padding=PADDING["large"])
 
         # === PATH CONFIGURATION SECTION ===
-        path_frame = ttk.LabelFrame(
+        path_frame = ttk.Labelframe(
             self.frame, text="Path Configuration", padding=PADDING["medium"]
         )
         path_frame.pack(fill="x", pady=(0, PADDING["medium"]))
@@ -75,7 +75,7 @@ class ConfigView(BaseView):
         path_frame.columnconfigure(1, weight=1)
 
         # === ANALYSIS SETTINGS SECTION ===
-        settings_frame = ttk.LabelFrame(
+        settings_frame = ttk.Labelframe(
             self.frame, text="Analysis Settings", padding=PADDING["medium"]
         )
         settings_frame.pack(fill="x", pady=(0, PADDING["medium"]))
@@ -97,7 +97,7 @@ class ConfigView(BaseView):
         ).pack(anchor="w")
 
         # === PIPELINE STEPS SECTION ===
-        steps_frame = ttk.LabelFrame(
+        steps_frame = ttk.Labelframe(
             self.frame, text="Pipeline Steps", padding=PADDING["medium"]
         )
         steps_frame.pack(fill="x", pady=(0, PADDING["medium"]))

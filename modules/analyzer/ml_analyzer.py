@@ -6,9 +6,6 @@ libraries/keywords, and exporting results to CSV. Concrete analyzers (e.g., prod
 vs consumer) specialize only the `check_library` method to express role-specific rules.
 """
 
-"""
-Abstract base class for ML analyzers handling project scans and keyword detection.
-"""
 import os
 from abc import ABC, abstractmethod
 from typing import Optional, List, Tuple

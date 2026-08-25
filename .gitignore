@@ -1,20 +1,58 @@
-#LOG files
-*.log
+# ---------------------------------------------------------------------------
+# MARK 2.0 Plus — .gitignore
+#
+# NOTE: do NOT add blanket rules such as `*.csv` or `*.md`.
+# Test fixtures, library dictionaries and documentation are versioned files;
+# a global ignore forces `git add -f` and has already caused data loss in the
+# past. Ignore *locations* that hold generated data, not file *extensions*.
+# ---------------------------------------------------------------------------
 
-#PYCACHE
-*.pyc
-
-#CSV files
-*.csv
-
-#FOLDERS
+# --- Generated pipeline data ---
 io/repos/
+io/output/
+modules/cloner/log/
+logs/
 
-#Venv settings
-venv
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
 
-#Pycharm settings
-.idea
+# --- Testing & coverage ---
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
 
-#Output vari
-*.md
+# --- Radon reports used by tools/calcola_voto.py ---
+mi.json
+cc.json
+
+# --- Virtual environments ---
+.venv/
+venv/
+env/
+
+# --- LaTeX build artefacts ---
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+
+# --- Editors / OS ---
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db

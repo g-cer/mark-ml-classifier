@@ -24,7 +24,7 @@ class OutputView(BaseView):
         """Create and layout all output view widgets."""
         self.frame = ttk.Frame(self.parent, padding=PADDING["medium"])
 
-        paned = ttk.PanedWindow(self.frame, orient="horizontal")
+        paned = ttk.Panedwindow(self.frame, orient="horizontal")
         paned.pack(fill="both", expand=True)
 
         # Left panel: Directory Tree
