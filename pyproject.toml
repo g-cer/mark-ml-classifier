@@ -1,0 +1,42 @@
+# MARK 2.0 Plus — tooling configuration.
+#
+# The project is run as scripts (main.py / main_args.py / mark_gui.py) rather
+# than installed as a package, so this file only configures the test and lint
+# tooling. Runtime dependencies stay in requirements.txt.
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+# The suite uses the *_test.py suffix rather than the test_*.py prefix.
+python_files = ["*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+testpaths = ["test"]
+addopts = "-ra"
+markers = [
+    "system: end-to-end tests that drive the CLI or the GUI",
+]
+
+[tool.coverage.run]
+branch = true
+# Only the classes targeted by the Master Test Plan are measured; see
+# docs/pdf/mark-2.0-plus-report.pdf section 5.2. `include` is used rather than
+# `source` because the target set is a handful of individual files.
+include = [
+    "modules/analyzer/ml_analyzer.py",
+    "gui/services/output_reader.py",
+    "gui/services/pipeline_service.py",
+    "gui/controller.py",
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_empty = true
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+    "raise NotImplementedError",
+]
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
