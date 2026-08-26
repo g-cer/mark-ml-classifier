@@ -1,4 +1,4 @@
-# Guida all'utilizzo di main_args.py
+# Guida all'utilizzo della CLI (`main_args.py`)
 
 ## Prerequisiti
 
@@ -114,13 +114,6 @@ Calcola le metriche del codice per tutti i progetti:
 - **Maintainability Index (MI)**: Misura la manutenibilità del codice (0-100)
 - **Cyclomatic Complexity (CC)**: Misura la complessità ciclomatica delle funzioni
 
-### 4. **Calcolo Metriche** (`--metrics`)
-
-Calcola le metriche del codice per tutti i progetti:
-
-- **Maintainability Index (MI)**: Misura la manutenibilità del codice (0-100)
-- **Cyclomatic Complexity (CC)**: Misura la complessità ciclomatica delle funzioni
-
 ### 5. **Merge dei Risultati** (`--merge`)
 
 Combina i risultati dell'analisi con l'oracle di riferimento per validazione.
@@ -140,7 +133,7 @@ python main_args.py --all
 Oppure equivalentemente:
 
 ```bash
-python main_args.py --clone --clone-check --analysis --merge --result-analysis
+python main_args.py --clone --clone-check --analysis --metrics --merge --result-analysis
 ```
 
 ### Clonare solo 10 repository
@@ -189,6 +182,24 @@ python main_args.py --clone --clone-check --analysis --n-repos 15
 
 ```bash
 python main_args.py --all --no-rules-3
+```
+
+## Esecuzione della suite di test
+
+```bash
+# Unit + integration (veloci, nessuna rete richiesta)
+python -m pytest test/unit_testing test/integration_testing -q
+
+# System test (avviano il tool end-to-end; il cloning richiede rete)
+python -m pytest test/system_testing -q
+
+# Suite completa
+python -m pytest -q
+
+# Branch coverage sulle classi target del Master Test Plan
+python -m pytest test/unit_testing \
+  --cov=modules.analyzer.ml_analyzer --cov=gui.services \
+  --cov-branch --cov-report=term
 ```
 
 ## Struttura delle directory

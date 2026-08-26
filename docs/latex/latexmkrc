@@ -1,0 +1,16 @@
+# latexmk configuration for the MARK 2.0 Plus deliverables.
+#
+# pdfLaTeX + biber, matching the Overleaf default for this project.
+# Overleaf reads this file automatically; locally it is picked up when latexmk
+# runs from this directory.
+
+$pdf_mode      = 1;      # produce PDF with pdflatex
+$bibtex_use    = 2;      # run biber and clean its output
+$biber         = 'biber %O %S';
+$max_repeat    = 5;      # enough passes for TOC + cleveref + biblatex
+
+# Files produced by biblatex, glossaries and the class helpers.
+$clean_ext = 'bbl bcf run.xml synctex.gz fdb_latexmk fls nav snm vrb';
+
+# Warn about unresolved references instead of silently producing "??".
+$warnings_as_errors = 0;
